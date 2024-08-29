@@ -62,7 +62,7 @@ The Docker container includes the following tools and libraries:
 5. **Run the Docker Container:**
    - On Unix systems (Linux/macOS), use the provided starter bash script:
      ```sh
-     bash start_TI_docker.sh
+     bash img-loader.sh
      ```
    - On Windows, if you do not have bash available, run the following command manually:
      ```sh
