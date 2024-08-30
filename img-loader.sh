@@ -1,12 +1,21 @@
 
 #!/bin/bash
 
+echo " "
 # Allow local root access to X server
 xhost +local:root
-
-# Display a note regarding processor compatibility
-echo "Note: This pipeline is not fully ready for ARM processors (e.g., Apple Silicon). It is good for Intel/AMD processors."
-
+echo " "
+echo "#####################################################################"
+echo "Welcome to the TI toolbox from the Center for Sleep and Consciousness"
+echo "Developed by Ido Haber as a wrapper around Modified SimNIBS"
+echo " "
+echo "Fully compatible with Linux, Windows, macOS w/ intel chip"
+echo "GUI funtionality is not supported for macOS Silicon chip"
+echo " "
+echo "Make sure you have Xgraphics available and running."
+echo "If you wish to use the optimizer, consider allocating more RAM to docker"
+echo "#####################################################################"
+echo " "
 # Prompt the user to input the path to the local project directory
 echo "Give path to local project dir:"
 read LOCAL_PROJECT_DIR
