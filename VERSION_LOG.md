@@ -7,6 +7,9 @@
     2. have an image of the net with the montage marked with the channels
     3. name and title should correspond to montage+subject_name
 - [ ] Develop a GUI solution for Apple Silicon.
+- [ ] MATLAB .png output comes empty on macOS intel.
+    1. error: MATLAB experienced a low level graphics error, and may not have drawn correctly.
+    2. libGL error: failed to load driver: swrast
 - [ ] Improve placement for ROI & Montage JSONs.
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
 - [ ] Add a tool to do EEG-Cap co-registration
