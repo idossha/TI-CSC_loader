@@ -26,8 +26,7 @@ The Docker container includes the following tools and libraries:
 ### Compatibility
 
 - **Operating Systems:** Linux, Windows, macOS
-- **Important Notes:**  
-- **MATLAB Runtime and GUI functionality** do not currently work on ARM architecture (Apple silicon).  
+- **GUI functionality** do not currently work on ARM architecture (Apple silicon).  
 - Please reach out if you encounter any bugs or issues.
 
 ---
