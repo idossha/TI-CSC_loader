@@ -104,22 +104,15 @@ A project directory containing the `Subjects` subdirectory with `m2m_SubjectID` 
 
 **How to Run:**
 
-If you have not created the leadfield matrix yet, run:
-
-```sh
-simnibs_python leadfield.py
-```
-
-Ensure that the `leadfield_SubjectID` directory is created and populated next to `m2m_SubjectID`.
-
-Once the leadfield is created, run:
 
 ```bash
 bash start-opt.sh
 ```
 
 Follow the on-screen prompts.  
-For optimization, allocate more RAM to Docker. Recommended: >32GB.
+First optimization for every subject will require you to create two leadfields which might take > 1h +
+Following optimizations will automatically skip this step.
+For hd-EEG optimization, allocate more RAM to Docker. Recommended: >32GB.
 
 ---
 

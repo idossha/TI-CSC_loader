@@ -10,17 +10,14 @@
 - [ ] MATLAB .png output comes empty on macOS intel.
     1. error: MATLAB experienced a low level graphics error, and may not have drawn correctly.
     2. libGL error: failed to load driver: swrast
-- [ ] Improve placement for ROI & Montage JSONs.
+- [x] Improve placement for ROI & Montage JSONs.
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
 - [ ] Add a tool to do EEG-Cap co-registration
     1. either with brainstorm function or with SimNIBS function
     2. Must have a GUI or some sort of automatic visual confirmation
-- [ ] Add a prompt to ask what Net the user wants to use
-- [ ] Add directionality measurement for Opt & Ana
+- [x] Add directionality measurement for Opt
+- [ ] Add directionality measurement for ana
 - [ ] Multipolar Optimization
-- [ ] Make optimizer ROI selecttion process similar to analyzer
-    1. Have a roi-list.json file
-    2. Create temp .csv files for the interpolator to work with and delete them at the end.
 - [ ] Clean `main-mTI.sh` script. Unnecessary local variables. 
 - [ ] Solve FSL GUI problem.
 - [ ] Create an in-house FSL image based on Ubuntu 20.04.
@@ -28,6 +25,18 @@
 - [ ] Eliminate NVIM popups.
 - [ ] Create a GUI for the Application
 
+---
+
+## [Version 1.2.0] - 2024-09-03
+
+### Added
+- Normal components assessment for optimizer
+- Terms of use GNU (license)
+- Citations request and open source acknowledgments (readme)
+
+### Changed
+- Moved ROIs directory from under optimizer to local project dir, and made it subject specific for higher accuracy.
+- Moved placement for ROI & Montage JSONs in analyzer to local project dir
 
 ---
 
