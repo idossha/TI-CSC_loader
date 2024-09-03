@@ -2,6 +2,7 @@
 
 - [x] Figure out why MATLAB Runtime does not work on Apple Silicon.
 - [x] Enhance optimizer prompting to behave similarly to the analyzer.
+- [ ] create a utils dir in project dir if not present
 - [ ] Automatic montage visualization.
     1. create a subdirectory called: `Presentation_material` 
     2. have an image of the net with the montage marked with the channels
