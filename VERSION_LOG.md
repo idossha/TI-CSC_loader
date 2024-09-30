@@ -1,5 +1,4 @@
 ### General To-Do List
-
 - [ ] MATLAB .png output comes empty on macOS intel.
     1. error: MATLAB experienced a low level graphics error, and may not have drawn correctly.
     2. libGL error: failed to load driver: swrast
@@ -17,16 +16,16 @@
 
 ## [Version 1.3.0] - 2024-??-??
 
-- [ ] Automatic montage visualization.
-    1. create a subdirectory called: `Presentation_material` 
-    2. have an image of the net with the montage marked with the channels
-    3. name and title should correspond to montage+subject_name
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
 
-## [Version 1.2.X] - 2024-??-??
+## [Version 1.2.2] - 2024-??-??
 - [ ] Add directionality measurement for ana
 - [ ] Eliminate NVIM popups.
 - [ ] Develop a GUI solution for Apple Silicon.
+- [ ] add progression system of optimization. ex: 001/150.
+- [ ] pip3 install meshio & nibabel in dockerfile
+- [ ] added automatic montage visualization
+- [ ] added asset directory 
 
 ## [Version 1.2.1] - 2024-09-05
 
