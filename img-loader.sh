@@ -13,7 +13,7 @@ echo "Fully compatible with Linux, Windows, macOS w/ intel chip"
 echo "GUI funtionality is not supported for macOS Silicon chip"
 echo " "
 echo "Make sure you have Xgraphics available and running."
-echo "If you wish to use the optimizer, consider allocating more RAM to docker"
+echo "If you wish to use the optimizer with hd-EEG, consider allocating more RAM to docker"
 echo "#####################################################################"
 echo " "
 # Prompt the user to input the path to the local project directory
@@ -35,7 +35,7 @@ if [[ "$OS_TYPE" == "Linux" ]]; then
     -e PROJECT_DIR_NAME="$PROJECT_DIR_NAME" \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v "$LOCAL_PROJECT_DIR":/mnt/"$PROJECT_DIR_NAME" \
-    idossha/ti-package:v1.2.1 bash -c "echo 'Your project was mounted to /mnt/$PROJECT_DIR_NAME' && bash"
+    idossha/ti-package:v1.2.2 bash -c "echo 'Your project was mounted to /mnt/$PROJECT_DIR_NAME' && bash"
 
 elif [[ "$OS_TYPE" == "macOS" ]]; then
   # Prompt for processor type if macOS
@@ -49,7 +49,7 @@ elif [[ "$OS_TYPE" == "macOS" ]]; then
       -e PROJECT_DIR_NAME="$PROJECT_DIR_NAME" \
       -v /tmp/.X11-unix:/tmp/.X11-unix \
       -v "$LOCAL_PROJECT_DIR":/mnt/"$PROJECT_DIR_NAME" \
-      idossha/ti-package:v1.2.1 bash -c "echo 'Your project was mounted to /mnt/$PROJECT_DIR_NAME' && bash"
+      idossha/ti-package:v1.2.2 bash -c "echo 'Your project was mounted to /mnt/$PROJECT_DIR_NAME' && bash"
 
   elif [[ "$PROC_TYPE" == "ARM" ]]; then
     DISPLAY=docker.for.mac.host.internal:0
@@ -58,7 +58,7 @@ elif [[ "$OS_TYPE" == "macOS" ]]; then
       -e PROJECT_DIR_NAME="$PROJECT_DIR_NAME" \
       -v /tmp/.X11-unix:/tmp/.X11-unix \
       -v "$LOCAL_PROJECT_DIR":/mnt/"$PROJECT_DIR_NAME" \
-      idossha/ti-package:v1.2.1 bash -c "echo 'Your project was mounted to /mnt/$PROJECT_DIR_NAME' && bash"
+      idossha/ti-package:v1.2.2 bash -c "echo 'Your project was mounted to /mnt/$PROJECT_DIR_NAME' && bash"
 
   else
     echo "Unsupported processor type. Please enter 'Intel' or 'ARM'."
@@ -69,7 +69,7 @@ elif [[ "$OS_TYPE" == "Windows" ]]; then
   echo "Enter the following command in your terminal:"
   echo "docker run --rm -ti -e DISPLAY=host.docker.internal:0.0 \ "
   echo "-e PROJECT_DIR_NAME=\"$PROJECT_DIR_NAME\"  -v "$LOCAL_PROJECT_DIR":/mnt/"$PROJECT_DIR_NAME" \ "
-  echo " -v C:\path\to\project_dir:/mnt/project_dir idossha/ti-package:v1.2.1"
+  echo " -v C:\path\to\project_dir:/mnt/project_dir idossha/ti-package:v1.2.2"
 else
   echo "Unsupported OS type. Please enter 'Linux', 'macOS', or 'Windows'."
 fi

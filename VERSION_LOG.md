@@ -11,21 +11,27 @@
 - [ ] Create an in-house FSL image based on Ubuntu 20.04.
 - [ ] Create an in-house Freesurfer image, version 7.4.1.
 - [ ] Create a GUI for the Application
+- [ ] Add directionality measurement for ana
+- [ ] Develop a GUI solution for Apple Silicon.
 
----
 
 ## [Version 1.3.0] - 2024-??-??
 
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
 
-## [Version 1.2.2] - 2024-??-??
-- [ ] Add directionality measurement for ana
-- [ ] Eliminate NVIM popups.
-- [ ] Develop a GUI solution for Apple Silicon.
+## [Version 1.2.3] - 2024-10-??
+
+### Added
 - [ ] add progression system of optimization. ex: 001/150.
-- [ ] pip3 install meshio & nibabel in dockerfile
-- [ ] added automatic montage visualization
-- [ ] added asset directory 
+- [ ] Eliminate NVIM popups.
+- [ ] add automatic ROI sphere niftii for visualization
+
+## [Version 1.2.2] - 2024-10-02
+
+### Added
+- pip3 install meshio & nibabel in dockerfile
+- added automatic montage visualization + imagemagick library
+- added asset directory. ti-csc/assets/
 
 ## [Version 1.2.1] - 2024-09-05
 
