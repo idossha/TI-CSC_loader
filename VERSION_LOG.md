@@ -5,26 +5,26 @@
 - [ ] Add a tool to do EEG-Cap co-registration
     1. either with brainstorm function or with SimNIBS function
     2. Must have a GUI or some sort of automatic visual confirmation
-- [ ] Multipolar Optimization
 - [ ] Clean `main-mTI.sh` script. Unnecessary local variables. 
 - [ ] Solve FSL GUI problem.
 - [ ] Create an in-house FSL image based on Ubuntu 20.04.
 - [ ] Create an in-house Freesurfer image, version 7.4.1.
 - [ ] Create a GUI for the Application
-- [ ] Add directionality measurement for ana
 - [ ] Develop a GUI solution for Apple Silicon.
 
+### To be added once new SimNIBS version comes out
+- [ ] Multipolar Optimization
+- [ ] Add directionality measurement for ana
 
-## [Version 1.3.0] - 2024-??-??
-
+## [Version 1.2.4] - 2024-??-??
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
+- [ ] add automatic ROI sphere niftii for visualization
 
-## [Version 1.2.3] - 2024-10-??
+## [Version 1.2.3] - 2024-10-03
 
 ### Added
-- [ ] add progression system of optimization. ex: 001/150.
-- [ ] Eliminate NVIM popups.
-- [ ] add automatic ROI sphere niftii for visualization
+- added progression system of optimization. ex: 001/150.
+- Eliminated NVIM popups & removed lsp.
 
 ## [Version 1.2.2] - 2024-10-02
 
@@ -80,14 +80,3 @@
 - [WSL Issue #286 on GitHub](https://github.com/microsoft/WSL/issues/286) - Follow the `metorm` comment.
 - Recompile MATLAB as suggested by `Shubham` in MATLAB Central.
 
----
-
-
-## Accomplished To Do
-
-- [x] Figure out why MATLAB Runtime does not work on Apple Silicon.
-- [x] Enhance optimizer prompting to behave similarly to the analyzer.
-- [x] create a utils dir in project dir if not present
-- [x] Improve placement for ROI & Montage JSONs.
-- [x] Add directionality measurement for Opt
----
