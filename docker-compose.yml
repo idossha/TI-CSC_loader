@@ -1,0 +1,58 @@
+
+services:
+  freesurfer:
+    image: idossha/ti-csc-compose:ti_freesurfer
+    container_name: freesurfer_container
+    environment:
+      - FREESURFER_HOME=/usr/local/freesurfer
+      - SUBJECTS_DIR=/usr/local/freesurfer/subjects
+      - FS_LICENSE=/usr/local/freesurfer/license.txt
+    volumes:
+      - shared_tools:/shared/tools  # Shared tools volume
+    networks:
+      - ti_network
+
+  fsl:
+    image: idossha/ti-csc-compose:ti_fsl
+    container_name: fsl_container
+    volumes:
+      - shared_tools:/shared/tools  # Shared tools volume
+    networks:
+      - ti_network
+
+  simnibs:
+    image: idossha/ti-csc-compose:ti_simnibs
+    container_name: simnibs_container
+    environment:
+      - DISPLAY
+      - LIBGL_ALWAYS_SOFTWARE=1
+      - PROJECT_DIR_NAME
+      - FREESURFER_HOME=/shared/tools/freesurfer/freesurfer
+      - SUBJECTS_DIR=/shared/tools/freesurfer/freesurfer/subjects
+      - FS_LICENSE=/shared/tools/freesurfer/freesurfer/license.txt
+      - FSLDIR=/shared/tools/fsl
+      - FSLOUTPUTTYPE=NIFTI_GZ
+      - FSLMULTIFILEQUIT=TRUE
+      - POSSUMDIR=/shared/tools/fsl
+    volumes:
+      - shared_tools:/shared/tools  # Shared tools volume
+      - /tmp/.X11-unix:/tmp/.X11-unix  # For X11 forwarding
+      - ${LOCAL_PROJECT_DIR}:/mnt/${PROJECT_DIR_NAME}  # Mount project directory
+    networks:
+      - ti_network
+    depends_on:
+      - freesurfer
+      - fsl
+    tty: true
+    stdin_open: true
+    working_dir: /ti-csc
+    command: ["bash"]
+
+networks:
+  ti_network:
+    driver: bridge
+
+volumes:
+  shared_tools:
+    driver: local
+
