@@ -6,9 +6,6 @@
     1. either with brainstorm function or with SimNIBS function
     2. Must have a GUI or some sort of automatic visual confirmation
 - [ ] Clean `main-mTI.sh` script. Unnecessary local variables. 
-- [ ] Solve FSL GUI problem.
-- [ ] Create an in-house FSL image based on Ubuntu 20.04.
-- [ ] Create an in-house Freesurfer image, version 7.4.1.
 - [ ] Create a GUI for the Application
 - [ ] Develop a GUI solution for Apple Silicon.
 
@@ -16,9 +13,26 @@
 - [ ] Multipolar Optimization
 - [ ] Add directionality measurement for ana
 
-## [Version 1.2.4] - 2024-??-??
+## [Version 1.3.0] - 2024-??-??
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
 - [ ] add automatic ROI sphere niftii for visualization
+- [ ] fix AMV for multipolar
+- [ ] Create an in-house FSL image based on Ubuntu 20.04 with `fsleyes` functionality.
+
+## Version 1.2.4 - 2024-10-10
+
+### New
+- Now available in docker-compose version for faster push/pull process and reduced machine requirements.
+- newer freesurfer version 7.1.1 -> 7.4.1
+
+### Added
+- bs2sn.py, for co-registration (utils)
+- dwi2dti.sh, for DTI preprocessing (utils)
+- dcm2niix package for DICOM prep
+
+### Changed
+- mTI.py, fixed mTI functionality in analyzer
+- location of license.txt for freesurfer useage
 
 ## [Version 1.2.3] - 2024-10-03
 

@@ -2,7 +2,7 @@
 # TI-CSC Toolbox for Docker Image
 
 **Developed and maintained by Ido Haber - [ihaber@wisc.edu](mailto:ihaber@wisc.edu)**  
-**Last update: October 07, 2024**
+**Last update: October 10, 2024**
 
 ---
 
@@ -15,7 +15,7 @@ The TI-CSC Toolbox is designed for researchers and engineers involved in Tempora
 The Docker container includes the following tools and libraries:
 
 - **FSL** 6.0.1
-- **Freesurfer** 7.1.1
+- **Freesurfer** 7.4.1
 - **SimNIBS** 4.1.0
 - **MATLAB Runtime** r2024a
 - Git repository with analysis and optimization scripts
@@ -41,27 +41,21 @@ The Docker container includes the following tools and libraries:
    - For Windows: Install [Xming](https://sourceforge.net/projects/xming/).
    - *Note: These are only necessary if you plan to use GUI functionality.*
 
-3. **Pull the Docker Image:**
-   - Use the following command to pull the image from Docker Hub:
-     ```sh
-     docker pull idossha/ti-package:vx.x.x
-     ```
-   - Replace `vx.x.x` with the version number you intend to use.
 
-4. **Set Up Project Directory:**
+3. **Set Up Project Directory:**
    - Ensure your project directory follows this structure:
      ```
      project_name/
-     ├── Simulations/
      └── Subjects/
          ├── m2m_001/
          └── m2m_002/
      ```
 
-5. **Run the Docker Container:**
+4. **Run the Docker Container:**
    - On Unix systems (Linux/macOS), use the provided starter bash script:
      ```sh
-     bash img-loader.sh
+     bash compose-loader.sh   # Recommended.
+     bash img-loader.sh       # A single large image which contains everything. 
      ```
    - On Windows, if you do not have bash available, run the following command manually:
      ```sh
@@ -84,6 +78,15 @@ The Docker container includes the following tools and libraries:
 
 ---
 
+#### To create head models
+
+1. locate you MR scans
+  * If these are DICOM, use `dcm2niix` function from the command line to transform to niftis
+  * Once you have your niftis in place, use the `charm` function from SimNIBS to reconstruct the head model
+  * Once `m2m_subjectrID` you can move to the `analyzer` / `optimizer`
+
+
+
 #### Analyzer Requirements:
 
 1. A project directory containing the `Subjects` subdirectory with `m2m_SubjectID` directories.
@@ -102,7 +105,6 @@ If running multiple consecutive analyses, move the previous `sim_SubjectID` dire
 A project directory containing the `Subjects` subdirectory with `m2m_SubjectID` directories.
 
 **How to Run:**
-
 
 ```bash
 bash start-opt.sh

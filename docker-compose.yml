@@ -1,7 +1,8 @@
 
+
 services:
   freesurfer:
-    image: idossha/ti-csc-compose:ti_freesurfer
+    image: idossha/ti-csc-compose:freesurfer
     container_name: freesurfer_container
     environment:
       - FREESURFER_HOME=/usr/local/freesurfer
@@ -13,7 +14,7 @@ services:
       - ti_network
 
   fsl:
-    image: idossha/ti-csc-compose:ti_fsl
+    image: idossha/ti-csc-compose:fsl
     container_name: fsl_container
     volumes:
       - shared_tools:/shared/tools  # Shared tools volume
@@ -21,15 +22,15 @@ services:
       - ti_network
 
   simnibs:
-    image: idossha/ti-csc-compose:ti_simnibs
+    image: idossha/ti-csc-compose:simnibs
     container_name: simnibs_container
     environment:
       - DISPLAY
       - LIBGL_ALWAYS_SOFTWARE=1
       - PROJECT_DIR_NAME
-      - FREESURFER_HOME=/shared/tools/freesurfer/freesurfer
-      - SUBJECTS_DIR=/shared/tools/freesurfer/freesurfer/subjects
-      - FS_LICENSE=/shared/tools/freesurfer/freesurfer/license.txt
+      - FREESURFER_HOME=/shared/tools/freesurfer
+      - SUBJECTS_DIR=/shared/tools/freesurfer/subjects
+      - FS_LICENSE=/shared/tools/freesurfer/license.txt
       - FSLDIR=/shared/tools/fsl
       - FSLOUTPUTTYPE=NIFTI_GZ
       - FSLMULTIFILEQUIT=TRUE
