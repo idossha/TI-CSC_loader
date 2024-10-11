@@ -15,11 +15,18 @@
 
 ## [Version 1.3.0] - 2024-??-??
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
-- [ ] add automatic ROI sphere niftii for visualization
-- [ ] fix AMV for multipolar
 - [ ] Create an in-house FSL image based on Ubuntu 20.04 with `fsleyes` functionality.
 
-## Version 1.2.4 - 2024-10-10
+## [Version 1.2.5] - 2024-10-??
+
+### Added
+- Automatic EGI net co-registration as part of the `charm` function 
+- Added automatic ROI sphere niftii for visualization
+
+### Changed
+-  fixed AMV script to work for multipolar
+
+## [Version 1.2.4] - 2024-10-10
 
 ### New
 - Now available in docker-compose version for faster push/pull process and reduced machine requirements.
