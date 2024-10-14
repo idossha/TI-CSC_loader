@@ -2,7 +2,7 @@
 # TI-CSC Toolbox for Docker Image
 
 **Developed and maintained by Ido Haber - [ihaber@wisc.edu](mailto:ihaber@wisc.edu)**  
-**Last update: October 10, 2024**
+**Last update: October 14, 2024**
 
 ---
 
@@ -17,6 +17,7 @@ The Docker container includes the following tools and libraries:
 - **FSL** 6.0.1
 - **Freesurfer** 7.4.1
 - **SimNIBS** 4.1.0
+- **dcm2niix**
 - **MATLAB Runtime** r2024a
 - Git repository with analysis and optimization scripts
 - Commonly used CLI tools: VIM, NVIM, TMUX, Git, and more.
@@ -82,7 +83,7 @@ The Docker container includes the following tools and libraries:
 
 1. locate you MR scans
   * If these are DICOM, use `dcm2niix` function from the command line to transform to niftis
-  * Once you have your niftis in place, use the `charm` function from SimNIBS to reconstruct the head model
+  * Once you have your niftis in place, use the `charm` function from SimNIBS to reconstruct the head model and co-register EEG nets.
   * Once `m2m_subjectrID` you can move to the `analyzer` / `optimizer`
 
 

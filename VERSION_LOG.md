@@ -18,14 +18,16 @@
 - [ ] Create an in-house FSL image based on Ubuntu 20.04 with `fsleyes` functionality.
 - [ ] Add automatic ROI sphere niftii for visualization
 ### Changed
--  fixed AMV script to work for multipolar
+- [ ] fix AMV script to work for multipolar
 
-
-## [Version 1.2.5] - 2024-10-??
+## [Version 1.2.5] - 2024-10-14
 
 ### Added
-- Automatic EGI net co-registration as part of the `charm` function 
-- Also, it is possible now to co-reguister whatever net you wish to. Simply make sure the .csv is in MNI space, and add the same fiducials to the content of the .csv. Then place is under ti-csc/assets/ElectrodeCaps_MNI/
+- Automatic high-density EGI net co-registration as part of the `charm` function
+
+### Changed
+- fixed `utils_dir` problem. Now the user does not have to have a predefined `utils_dir`
+- removed automatic .csv opening at the end of optimizer
 
 ## [Version 1.2.4] - 2024-10-10
 
