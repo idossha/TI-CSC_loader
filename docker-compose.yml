@@ -2,7 +2,7 @@
 
 services:
   freesurfer:
-    image: idossha/ti-csc-compose:freesurfer-v1.2.5
+    image: idossha/ti-csc-compose:freesurfer-v1.2.4
     container_name: freesurfer_container
     environment:
       - FREESURFER_HOME=/usr/local/freesurfer
@@ -14,7 +14,7 @@ services:
       - ti_network
 
   fsl:
-    image: idossha/ti-csc-compose:fsl-v1.2.5
+    image: idossha/ti-csc-compose:fsl-v1.2.4
     container_name: fsl_container
     volumes:
       - shared_tools:/shared/tools  # Shared tools volume
@@ -22,7 +22,7 @@ services:
       - ti_network
 
   simnibs:
-    image: idossha/ti-csc-compose:simnibs-v1.2.5
+    image: idossha/ti-csc-compose:simnibs-v1.2.4
     container_name: simnibs_container
     environment:
       - DISPLAY

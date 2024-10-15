@@ -16,9 +16,16 @@
 ## [Version 1.3.0] - 2024-??-??
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
 - [ ] Create an in-house FSL image based on Ubuntu 20.04 with `fsleyes` functionality.
-- [ ] Add automatic ROI sphere niftii for visualization
+
+## [Version 1.2.6] - 2024-10-15
+
+### Added 
+- Added automatic ROI sphere niftii file (under sim_subjectID/niftis/) for visualization
+
 ### Changed
-- [ ] fix AMV script to work for multipolar
+- fixed AMV script to work for multipolar
+- minor changes to promping of analyzer
+- imporved error catching to user inputs in analyzer
 
 ## [Version 1.2.5] - 2024-10-14
 
