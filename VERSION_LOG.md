@@ -17,6 +17,13 @@
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
 - [ ] Create an in-house FSL image based on Ubuntu 20.04 with `fsleyes` functionality.
 
+## [Version 1.2.7] - 2024-10-16
+
+### Changed
+- visualize-montage.sh now works perfect for both U & M simulations. 
+- more debugging echos throughout analyzer
+- Better prompting for ROI selection in optimizer
+
 ## [Version 1.2.6] - 2024-10-15
 
 ### Added 
