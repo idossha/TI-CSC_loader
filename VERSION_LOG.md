@@ -5,7 +5,6 @@
 - [ ] Add a tool to do EEG-Cap co-registration
     1. either with brainstorm function or with SimNIBS function
     2. Must have a GUI or some sort of automatic visual confirmation
-- [ ] Clean `main-mTI.sh` script. Unnecessary local variables. 
 - [ ] Create a GUI for the Application
 - [ ] Develop a GUI solution for Apple Silicon.
 
