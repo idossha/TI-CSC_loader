@@ -17,6 +17,16 @@
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
 - [ ] Create an in-house FSL image based on Ubuntu 20.04 with `fsleyes` functionality.
 
+## [Version 1.2.8] - 2024-10-16
+
+### Added
+- parcellation of White Matter
+
+### Changed
+- sphere-analysis & sphere-create, made sure not temp file lingering and enhanced debugging output
+- `GM_extract.py` now named `field_extract.py` due to both GM & WM present
+
+
 ## [Version 1.2.7] - 2024-10-16
 
 ### Changed

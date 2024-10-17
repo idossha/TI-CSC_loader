@@ -22,7 +22,7 @@ services:
       - ti_network
 
   simnibs:
-    image: idossha/ti-csc-compose:simnibs-v1.2.7
+    image: idossha/ti-csc-compose:simnibs-v1.2.8
     container_name: simnibs_container
     environment:
       - DISPLAY
