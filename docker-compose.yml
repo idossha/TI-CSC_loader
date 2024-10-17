@@ -1,5 +1,4 @@
 
-
 services:
   freesurfer:
     image: idossha/ti-csc-compose:freesurfer-v1.2.7
@@ -9,7 +8,7 @@ services:
       - SUBJECTS_DIR=/usr/local/freesurfer/subjects
       - FS_LICENSE=/usr/local/freesurfer/license.txt
     volumes:
-      - shared_tools:/shared/tools  # Shared tools volume
+      - ti-csc_loader_shared_tools:/shared/tools  # Updated to use correct volume name
     networks:
       - ti_network
 
@@ -17,7 +16,7 @@ services:
     image: idossha/ti-csc-compose:fsl-v1.2.7
     container_name: fsl_container
     volumes:
-      - shared_tools:/shared/tools  # Shared tools volume
+      - ti-csc_loader_shared_tools:/shared/tools  # Updated to use correct volume name
     networks:
       - ti_network
 
@@ -36,7 +35,7 @@ services:
       - FSLMULTIFILEQUIT=TRUE
       - POSSUMDIR=/shared/tools/fsl
     volumes:
-      - shared_tools:/shared/tools  # Shared tools volume
+      - ti-csc_loader_shared_tools:/shared/tools  # Updated to use correct volume name
       - /tmp/.X11-unix:/tmp/.X11-unix  # For X11 forwarding
       - ${LOCAL_PROJECT_DIR}:/mnt/${PROJECT_DIR_NAME}  # Mount project directory
     networks:
@@ -54,6 +53,6 @@ networks:
     driver: bridge
 
 volumes:
-  shared_tools:
+  ti-csc_loader_shared_tools:  # Use the actual volume name found on the system
     driver: local
 
