@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # setup_docker_gui.sh
@@ -34,7 +33,7 @@ check_xquartz_running() {
     if ! pgrep XQuartz > /dev/null; then
         echo "XQuartz is not running. Starting XQuartz..."
         open -a XQuartz
-        sleep 2  # Wait for XQuartz to start
+        sleep 5  # Wait for XQuartz to start
     else
         echo "XQuartz is already running."
     fi
@@ -48,7 +47,7 @@ configure_xquartz() {
     # Restart XQuartz to apply changes
     killall XQuartz || true
     open -a XQuartz
-    sleep 2  # Wait for XQuartz to restart
+    sleep 5  # Wait for XQuartz to restart
 
     # Allow connections from localhost
     if ! command -v xhost &> /dev/null; then
@@ -75,18 +74,35 @@ get_host_ip() {
 # Function to set DISPLAY environment variable
 set_display() {
     debug "Setting DISPLAY environment variable..."
-    export DISPLAY=${DISPLAY:-host.docker.internal:0}
+    export DISPLAY="host.docker.internal:0"
     echo "DISPLAY set to $DISPLAY"
+}
+
+# Function to determine shell and set the correct profile file
+set_shell_profile() {
+    SHELL_TYPE=$(basename "$SHELL")
+    debug "Detected shell: $SHELL_TYPE"
+
+    if [[ "$SHELL_TYPE" == "zsh" ]]; then
+        SHELL_PROFILE="$HOME/.zshrc"
+    elif [[ "$SHELL_TYPE" == "bash" ]]; then
+        SHELL_PROFILE="$HOME/.bash_profile"
+    else
+        echo "Unsupported shell: $SHELL_TYPE. Please use bash or zsh."
+        exit 1
+    fi
+
+    debug "Using shell profile: $SHELL_PROFILE"
 }
 
 # Function to export environment variables for future use
 export_env_vars() {
+    set_shell_profile  # Determine correct shell profile
+
     debug "Exporting environment variables for future Docker Compose usage..."
 
-    # You can choose to export these variables to your shell profile for persistence
-    SHELL_PROFILE="$HOME/.bash_profile"  # Change to .zshrc if you use Zsh
     ENV_VARS="export DOCKER_HOST_IP=$HOST_IP
-export DOCKER_DISPLAY=$DISPLAY"
+export DISPLAY=$DISPLAY"
 
     echo "$ENV_VARS" >> "$SHELL_PROFILE"
     debug "Environment variables appended to $SHELL_PROFILE."
@@ -95,8 +111,8 @@ export DOCKER_DISPLAY=$DISPLAY"
     source "$SHELL_PROFILE"
     debug "Environment variables exported to current session."
 
-    echo "DOCKER_HOST_IP=$DOCKER_HOST_IP"
-    echo "DOCKER_DISPLAY=$DOCKER_DISPLAY"
+    echo "DOCKER_HOST_IP=$HOST_IP"
+    echo "DISPLAY=$DISPLAY"
 }
 
 # Function to verify the configuration
@@ -118,6 +134,18 @@ verify_configuration() {
         exit 1
     else
         echo "xhost is correctly configured to allow connections from 127.0.0.1."
+    fi
+
+    # Test XQuartz with a simple GUI app (xclock)
+    debug "Testing XQuartz with a simple GUI application (xclock)..."
+    docker run -e DISPLAY=$DISPLAY --rm -it jess/x11 xclock &
+    sleep 5  # Wait for xclock to display
+    if pgrep xclock > /dev/null; then
+        echo "XQuartz is working properly. GUI apps can connect."
+        killall xclock  # Stop the test app
+    else
+        echo "Error: GUI apps could not connect to XQuartz. Please check your setup."
+        exit 1
     fi
 
     echo "Configuration verification completed successfully."

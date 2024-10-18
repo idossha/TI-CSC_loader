@@ -2,7 +2,8 @@ services:
   freesurfer:
     image: idossha/ti-csc-compose:freesurfer-v1.2.7
     container_name: freesurfer_container
-    platform: linux/amd64  # Dynamic platform handling
+    platform: linux/amd64
+    hostname: ti_x  # Set a fixed hostname for this container
     environment:
       - FREESURFER_HOME=/usr/local/freesurfer
       - SUBJECTS_DIR=/usr/local/freesurfer/subjects
@@ -15,7 +16,8 @@ services:
   fsl:
     image: idossha/ti-csc-compose:fsl-v1.2.7
     container_name: fsl_container
-    platform: linux/amd64  # Dynamic platform handling
+    platform: linux/amd64
+    hostname: ti_x  # Set a fixed hostname for this container
     volumes:
       - ti-csc_loader_shared_tools:/shared/tools
     networks:
@@ -24,12 +26,13 @@ services:
   simnibs:
     image: idossha/ti-csc-compose:simnibs-v1.2.8
     container_name: simnibs_container
-    platform: linux/amd64  # Dynamic platform handling
+    platform: linux/amd64
+    hostname: ti_x  # Set a fixed hostname for this container
     environment:
       - DISPLAY
       - LIBGL_ALWAYS_SOFTWARE=1
       - PROJECT_DIR_NAME
-      - XDG_RUNTIME_DIR=/tmp/runtime-root  # Set this to avoid errors in Freeview
+      - XDG_RUNTIME_DIR=/tmp/runtime-root
       - FREESURFER_HOME=/shared/tools/freesurfer
       - SUBJECTS_DIR=/shared/tools/freesurfer/subjects
       - FS_LICENSE=/shared/tools/freesurfer/license.txt

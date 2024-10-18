@@ -39,45 +39,43 @@ get_project_directory() {
   done
 }
 
+# Function to get the IP address of the host machine
+get_host_ip() {
+  case "$(uname -s)" in
+    Darwin)
+      # Get the local IP address on macOS
+      HOST_IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+      ;;
+    Linux)
+      # Get the local IP address on Linux
+      HOST_IP=$(hostname -I | awk '{print $1}')
+      ;;
+    *)
+      echo "Unsupported OS. Please use macOS or Linux."
+      exit 1
+      ;;
+  esac
+  echo "Host IP: $HOST_IP"
+}
+
 # Function to set DISPLAY environment variable based on OS and processor type
 set_display_env() {
-  echo "Detecting operating system..."
+  echo "Setting DISPLAY environment variable..."
 
-  OS_TYPE=$(uname -s)
-  PROC_TYPE=$(uname -m)
+  get_host_ip  # Get the IP address dynamically
 
-  case "$OS_TYPE" in
-  Linux*)
-    echo "Operating System: Linux"
-    DISPLAY_ENV="$DISPLAY"
-    ;;
-  Darwin*)
-    echo "Operating System: macOS"
-    echo "Detected processor: $PROC_TYPE."
+  # Set DISPLAY based on IP
+  export DISPLAY="$HOST_IP:0"
 
-    if [[ "$PROC_TYPE" == "x86_64" ]]; then
-      DISPLAY_ENV="host.docker.internal:0"
-    elif [[ "$PROC_TYPE" == "arm64" ]]; then
-      # For Apple Silicon (ARM)
-      DISPLAY_ENV="docker.for.mac.host.internal:0"
-    else
-      echo "Unsupported processor type: $PROC_TYPE. Please ensure your system supports Docker GUI functionality."
-      exit 1
-    fi
-    ;;
-  CYGWIN* | MINGW* | MSYS*)
-    echo "Operating System: Windows"
-    echo "Make sure you have Xming or VcXsrv running if you wish to use GUIs."
-    DISPLAY_ENV="host.docker.internal:0.0"
-    ;;
-  *)
-    echo "Unsupported Operating System: $OS_TYPE. Please use Linux, macOS, or Windows."
-    exit 1
-    ;;
-  esac
-
-  export DISPLAY=$DISPLAY_ENV
   echo "DISPLAY set to $DISPLAY"
+}
+
+# Function to allow connections from XQuartz
+allow_xhost() {
+  echo "Allowing connections from XQuartz..."
+
+  # Use the dynamically obtained IP or hostname for xhost
+  xhost + "$HOST_IP"
 }
 
 # Function to validate docker-compose.yml existence
@@ -91,15 +89,9 @@ validate_docker_compose() {
 # Function to display welcome message
 display_welcome() {
   echo " "
-  # Allow local root access to X server
-  xhost +local:root
-  echo " "
   echo "#####################################################################"
   echo "Welcome to the TI toolbox from the Center for Sleep and Consciousness"
   echo "Developed by Ido Haber as a wrapper around Modified SimNIBS"
-  echo " "
-  echo "Fully compatible with Linux, Windows, macOS (Intel/ARM chips)"
-  echo "GUI functionality is not supported for macOS Silicon chip"
   echo " "
   echo "Make sure you have XQuartz (on macOS), X11 (on Linux), or Xming/VcXsrv (on Windows) running."
   echo "If you wish to use the optimizer, consider allocating more RAM to Docker."
@@ -141,6 +133,7 @@ get_project_directory
 PROJECT_DIR_NAME=$(basename "$LOCAL_PROJECT_DIR")
 check_docker_resources
 set_display_env
+allow_xhost  # Allow X11 connections
 
 # Set up Docker Compose environment variables
 export LOCAL_PROJECT_DIR
