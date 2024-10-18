@@ -16,6 +16,9 @@
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
 - [ ] Create an in-house FSL image based on Ubuntu 20.04 with `fsleyes` functionality.
 
+## [October 18]
+- Implemented new loader program for docker compose with automatic system detection. 
+
 ## [Version 1.2.8] - 2024-10-16
 
 ### Added
