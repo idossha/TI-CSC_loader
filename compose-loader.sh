@@ -44,6 +44,7 @@ set_display_env() {
   echo "Detecting operating system..."
 
   OS_TYPE=$(uname -s)
+  PROC_TYPE=$(uname -m)
 
   case "$OS_TYPE" in
   Linux*)
@@ -52,8 +53,6 @@ set_display_env() {
     ;;
   Darwin*)
     echo "Operating System: macOS"
-    # Detect processor type
-    PROC_TYPE=$(uname -m)
     echo "Detected processor: $PROC_TYPE."
 
     if [[ "$PROC_TYPE" == "x86_64" ]]; then
@@ -114,7 +113,7 @@ run_docker_compose() {
   docker-compose -f "$SCRIPT_DIR/docker-compose.yml" up --build -d
 
   # Wait for containers to initialize
-  sleep 5
+  sleep 3
 
   # Check if simnibs service is up
   if ! docker-compose ps | grep -q "simnibs"; then
@@ -148,3 +147,4 @@ export LOCAL_PROJECT_DIR
 export PROJECT_DIR_NAME
 
 run_docker_compose
+

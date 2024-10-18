@@ -1,32 +1,35 @@
-
 services:
   freesurfer:
     image: idossha/ti-csc-compose:freesurfer-v1.2.7
     container_name: freesurfer_container
+    platform: linux/amd64  # Dynamic platform handling
     environment:
       - FREESURFER_HOME=/usr/local/freesurfer
       - SUBJECTS_DIR=/usr/local/freesurfer/subjects
       - FS_LICENSE=/usr/local/freesurfer/license.txt
     volumes:
-      - ti-csc_loader_shared_tools:/shared/tools  # Updated to use correct volume name
+      - ti-csc_loader_shared_tools:/shared/tools
     networks:
       - ti_network
 
   fsl:
     image: idossha/ti-csc-compose:fsl-v1.2.7
     container_name: fsl_container
+    platform: linux/amd64  # Dynamic platform handling
     volumes:
-      - ti-csc_loader_shared_tools:/shared/tools  # Updated to use correct volume name
+      - ti-csc_loader_shared_tools:/shared/tools
     networks:
       - ti_network
 
   simnibs:
     image: idossha/ti-csc-compose:simnibs-v1.2.8
     container_name: simnibs_container
+    platform: linux/amd64  # Dynamic platform handling
     environment:
       - DISPLAY
       - LIBGL_ALWAYS_SOFTWARE=1
       - PROJECT_DIR_NAME
+      - XDG_RUNTIME_DIR=/tmp/runtime-root  # Set this to avoid errors in Freeview
       - FREESURFER_HOME=/shared/tools/freesurfer
       - SUBJECTS_DIR=/shared/tools/freesurfer/subjects
       - FS_LICENSE=/shared/tools/freesurfer/license.txt
@@ -35,8 +38,8 @@ services:
       - FSLMULTIFILEQUIT=TRUE
       - POSSUMDIR=/shared/tools/fsl
     volumes:
-      - ti-csc_loader_shared_tools:/shared/tools  # Updated to use correct volume name
-      - /tmp/.X11-unix:/tmp/.X11-unix  # For X11 forwarding
+      - ti-csc_loader_shared_tools:/shared/tools
+      - /tmp/.X11-unix:/tmp/.X11-unix  # X11 forwarding for GUI
       - ${LOCAL_PROJECT_DIR}:/mnt/${PROJECT_DIR_NAME}  # Mount project directory
     networks:
       - ti_network
@@ -53,6 +56,6 @@ networks:
     driver: bridge
 
 volumes:
-  ti-csc_loader_shared_tools:  # Use the actual volume name found on the system
+  ti-csc_loader_shared_tools:
     driver: local
 
