@@ -1,64 +1,54 @@
 services:
-  freesurfer:
-    image: idossha/ti-csc-compose:freesurfer-v1.2.7
-    container_name: freesurfer_container
-    platform: linux/amd64
-    hostname: ti_x  # Set a fixed hostname for this container
-    environment:
-      - FREESURFER_HOME=/usr/local/freesurfer
-      - SUBJECTS_DIR=/usr/local/freesurfer/subjects
-      - FS_LICENSE=/usr/local/freesurfer/license.txt
+  fsl:
+    image: ti-csc_documents_fsl:latest
+    container_name: fsl_container
     volumes:
-      - ti-csc_loader_shared_tools:/shared/tools
+      - fsl_volume:/usr/local/fsl/
     networks:
       - ti_network
 
-  fsl:
-    image: idossha/ti-csc-compose:fsl-v1.2.7
-    container_name: fsl_container
-    platform: linux/amd64
-    hostname: ti_x  # Set a fixed hostname for this container
+  freesurfer:
+    image: ti-csc_documents_freesurfer:latest
+    container_name: freesurfer_container
     volumes:
-      - ti-csc_loader_shared_tools:/shared/tools
+      - freesurfer_volume:/usr/local/freesurfer/
     networks:
       - ti_network
 
   simnibs:
-    image: idossha/ti-csc-compose:simnibs-v1.2.8
+    image: ti-csc_documents_simnibs:latest
     container_name: simnibs_container
-    platform: linux/amd64
-    hostname: ti_x  # Set a fixed hostname for this container
     environment:
+      - USER=root
       - DISPLAY
       - LIBGL_ALWAYS_SOFTWARE=1
-      - PROJECT_DIR_NAME
-      - XDG_RUNTIME_DIR=/tmp/runtime-root
-      - FREESURFER_HOME=/shared/tools/freesurfer
-      - SUBJECTS_DIR=/shared/tools/freesurfer/subjects
-      - FS_LICENSE=/shared/tools/freesurfer/license.txt
-      - FSLDIR=/shared/tools/fsl
+      - FSLDIR=/usr/local/fsl
       - FSLOUTPUTTYPE=NIFTI_GZ
       - FSLMULTIFILEQUIT=TRUE
-      - POSSUMDIR=/shared/tools/fsl
+      - POSSUMDIR=/usr/local/fsl
+      - FREESURFER_HOME=/usr/local/freesurfer
+      - SUBJECTS_DIR=/usr/local/freesurfer/subjects
+      - FS_LICENSE=/usr/local/freesurfer/license.txt
     volumes:
-      - ti-csc_loader_shared_tools:/shared/tools
-      - /tmp/.X11-unix:/tmp/.X11-unix  # X11 forwarding for GUI
-      - ${LOCAL_PROJECT_DIR}:/mnt/${PROJECT_DIR_NAME}  # Mount project directory
+      - fsl_volume:/usr/local/fsl/
+      - freesurfer_volume:/usr/local/freesurfer/
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${LOCAL_PROJECT_DIR}:/mnt/${PROJECT_DIR_NAME}  # Replace with your actual path
     networks:
       - ti_network
     depends_on:
-      - freesurfer
       - fsl
+      - freesurfer
     tty: true
     stdin_open: true
     working_dir: /ti-csc
-    command: ["bash"]
+    command: ["/bin/bash"]
 
 networks:
   ti_network:
     driver: bridge
 
 volumes:
-  ti-csc_loader_shared_tools:
-    driver: local
+  fsl_volume:
+  freesurfer_volume:
 

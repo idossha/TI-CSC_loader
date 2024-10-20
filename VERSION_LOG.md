@@ -11,12 +11,15 @@
 ### To be added once new SimNIBS version comes out
 - [ ] Multipolar Optimization
 - [ ] Add directionality measurement for ana
-
-## [Version 1.3.0] - 2024-??-??
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
-- [ ] Create an in-house FSL image based on Ubuntu 20.04 with `fsleyes` functionality.
 
-## [October 18]
+## [Version 1.3.0] - 2024-10-20
+
+### Added
+- FSL GUI functionality
+
+### Changed
+- new dockerfile architecture for all three images
 - Implemented new loader program for docker compose with automatic system detection. 
 
 ## [Version 1.2.8] - 2024-10-16
