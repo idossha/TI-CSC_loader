@@ -29,6 +29,8 @@ services:
       - FREESURFER_HOME=/usr/local/freesurfer
       - SUBJECTS_DIR=/usr/local/freesurfer/subjects
       - FS_LICENSE=/usr/local/freesurfer/license.txt
+      - LOCAL_PROJECT_DIR=${LOCAL_PROJECT_DIR}
+      - PROJECT_DIR_NAME=${PROJECT_DIR_NAME}
     volumes:
       - fsl_volume:/usr/local/fsl/
       - freesurfer_volume:/usr/local/freesurfer/
