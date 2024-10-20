@@ -1,6 +1,6 @@
 services:
   fsl:
-    image: ti-csc_documents_fsl:v1.3.0
+    image: idossha/ti-csc_compose_fsl:v1.3.0
     container_name: fsl_container
     volumes:
       - fsl_volume:/usr/local/fsl/
@@ -8,7 +8,7 @@ services:
       - ti_network
 
   freesurfer:
-    image: ti-csc_documents_freesurfer:v1.3.0
+    image: idossha/ti-csc_compose_freesurfer:v1.3.0
     container_name: freesurfer_container
     volumes:
       - freesurfer_volume:/usr/local/freesurfer/
@@ -16,7 +16,7 @@ services:
       - ti_network
 
   simnibs:
-    image: ti-csc_documents_simnibs:v1.3.0
+    image: idossha/ti-csc_compose_simnibs:v1.3.0
     container_name: simnibs_container
     environment:
       - USER=root

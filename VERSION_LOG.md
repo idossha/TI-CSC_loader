@@ -1,14 +1,8 @@
 ### General To-Do List
 - [ ] MATLAB .png output comes empty on macOS intel.
     1. error: MATLAB experienced a low level graphics error, and may not have drawn correctly.
-    2. libGL error: failed to load driver: swrast
-- [ ] Add a tool to do EEG-Cap co-registration
-    1. either with brainstorm function or with SimNIBS function
-    2. Must have a GUI or some sort of automatic visual confirmation
 - [ ] Create a GUI for the Application
 - [ ] Develop a GUI solution for Apple Silicon.
-
-### To be added once new SimNIBS version comes out
 - [ ] Multipolar Optimization
 - [ ] Add directionality measurement for ana
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
