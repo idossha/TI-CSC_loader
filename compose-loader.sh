@@ -42,18 +42,18 @@ get_project_directory() {
 # Function to get the IP address of the host machine
 get_host_ip() {
   case "$(uname -s)" in
-    Darwin)
-      # Get the local IP address on macOS
-      HOST_IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
-      ;;
-    Linux)
-      # Get the local IP address on Linux
-      HOST_IP=$(hostname -I | awk '{print $1}')
-      ;;
-    *)
-      echo "Unsupported OS. Please use macOS or Linux."
-      exit 1
-      ;;
+  Darwin)
+    # Get the local IP address on macOS
+    HOST_IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+    ;;
+  Linux)
+    # On Linux, we don't need to calculate HOST_IP for DISPLAY
+    HOST_IP=""
+    ;;
+  *)
+    echo "Unsupported OS. Please use macOS or Linux."
+    exit 1
+    ;;
   esac
   echo "Host IP: $HOST_IP"
 }
@@ -62,20 +62,29 @@ get_host_ip() {
 set_display_env() {
   echo "Setting DISPLAY environment variable..."
 
-  get_host_ip  # Get the IP address dynamically
-
-  # Set DISPLAY based on IP
-  export DISPLAY="$HOST_IP:0"
-
-  echo "DISPLAY set to $DISPLAY"
+  if [[ "$(uname -s)" == "Linux" ]]; then
+    # If Linux, use the existing DISPLAY
+    export DISPLAY=$DISPLAY
+    echo "Using system's DISPLAY: $DISPLAY"
+  else
+    # For macOS, dynamically obtain the host IP and set DISPLAY
+    get_host_ip # Get the IP address dynamically
+    export DISPLAY="$HOST_IP:0"
+    echo "DISPLAY set to $DISPLAY"
+  fi
 }
 
-# Function to allow connections from XQuartz
+# Function to allow connections from XQuartz or X11
 allow_xhost() {
-  echo "Allowing connections from XQuartz..."
+  echo "Allowing connections from XQuartz or X11..."
 
-  # Use the dynamically obtained IP or hostname for xhost
-  xhost + "$HOST_IP"
+  if [[ "$(uname -s)" == "Linux" ]]; then
+    # Allow connections for Linux
+    xhost +local:root
+  else
+    # Use the dynamically obtained IP for macOS xhost
+    xhost + "$HOST_IP"
+  fi
 }
 
 # Function to validate docker-compose.yml existence
@@ -133,11 +142,10 @@ get_project_directory
 PROJECT_DIR_NAME=$(basename "$LOCAL_PROJECT_DIR")
 check_docker_resources
 set_display_env
-allow_xhost  # Allow X11 connections
+allow_xhost # Allow X11 connections
 
 # Set up Docker Compose environment variables
 export LOCAL_PROJECT_DIR
 export PROJECT_DIR_NAME
 
 run_docker_compose
-
