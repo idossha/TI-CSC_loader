@@ -1,5 +1,6 @@
-
 #!/bin/bash
+
+# GUI testing for macOS
 
 # Function to check allocated Docker resources (CPU, memory)
 check_docker_resources() {
@@ -24,18 +25,18 @@ check_docker_resources() {
 # Function to get the IP address of the host machine
 get_host_ip() {
   case "$(uname -s)" in
-    Darwin)
-      # Get the local IP address on macOS
-      HOST_IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
-      ;;
-    Linux)
-      # Get the local IP address on Linux
-      HOST_IP=$(hostname -I | awk '{print $1}')
-      ;;
-    *)
-      echo "Unsupported OS. Please use macOS or Linux."
-      exit 1
-      ;;
+  Darwin)
+    # Get the local IP address on macOS
+    HOST_IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+    ;;
+  Linux)
+    # Get the local IP address on Linux
+    HOST_IP=$(hostname -I | awk '{print $1}')
+    ;;
+  *)
+    echo "Unsupported OS. Please use macOS or Linux."
+    exit 1
+    ;;
   esac
   echo "Host IP: $HOST_IP"
 }
@@ -44,7 +45,7 @@ get_host_ip() {
 set_display_env() {
   echo "Setting DISPLAY environment variable..."
 
-  get_host_ip  # Get the IP address dynamically
+  get_host_ip # Get the IP address dynamically
 
   # Set DISPLAY based on IP
   export DISPLAY="$HOST_IP:0"
@@ -70,5 +71,5 @@ run_docker_container() {
 
 check_docker_resources
 set_display_env
-allow_xhost  # Allow X11 connections
+allow_xhost # Allow X11 connections
 run_docker_container
