@@ -2,7 +2,7 @@
 # TI-CSC Toolbox for Docker Image
 
 **Developed and maintained by Ido Haber - [ihaber@wisc.edu](mailto:ihaber@wisc.edu)**  
-**Last update: October 14, 2024**
+**Last update: October 21, 2024**
 
 ---
 
@@ -14,7 +14,7 @@ The TI-CSC Toolbox is designed for researchers and engineers involved in Tempora
 
 The Docker container includes the following tools and libraries:
 
-- **FSL** 6.0.1
+- **FSL** 6.0.6
 - **Freesurfer** 7.4.1
 - **SimNIBS** 4.1.0
 - **dcm2niix**
@@ -27,7 +27,6 @@ The Docker container includes the following tools and libraries:
 ### Compatibility
 
 - **Operating Systems:** Linux, Windows, macOS
-- **GUI functionality** do not currently work on ARM architecture (Apple silicon).  
 - Please reach out if you encounter any bugs or issues.
 
 ---
@@ -41,6 +40,7 @@ The Docker container includes the following tools and libraries:
    - For macOS: Install [XQuartz](https://www.xquartz.org/).
    - For Windows: Install [Xming](https://sourceforge.net/projects/xming/).
    - *Note: These are only necessary if you plan to use GUI functionality.*
+   - macOS tends to be GUI problematic. It is **highly recommanded** to run the `config_sys.sh` script before trying the run the containers. Also, consider downgrading Xquartz to an older version.
 
 
 3. **Set Up Project Directory:**
