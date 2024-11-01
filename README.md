@@ -46,10 +46,17 @@ The Docker container includes the following tools and libraries:
 3. **Set Up Project Directory:**
    - Ensure your project directory follows this structure:
      ```
-     project_name/
-     └── Subjects/
-         ├── m2m_001/
-         └── m2m_002/
+        ├── MRIs
+        │   ├── 001
+        │   │   ├── T1
+        │   │   └── T2
+        │   └── 002
+        │       ├── T1
+        │       └── T2
+        └── Subjects
+            ├── sub_001
+            └── sub_002
+
      ```
 
 4. **Run the Docker Container:**

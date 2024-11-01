@@ -36,18 +36,18 @@ allow_network_clients() {
     open -a XQuartz
     sleep 2
 }
-
-# Function to set up X11 display and allow localhost connections
+# changed `export DISPLAY=localhost:0` to `export DISPLAY=:0`
+# Potential explanation: When you set DISPLAY=localhost:0, it tells X11 applications to connect to the X server via TCP on localhost (which is 127.0.0.1) at display 0. However, by default, XQuartz uses UNIX domain sockets and does not listen on TCP ports unless explicitly configured to do so.
 setup_x11_display() {
-    echo "Setting DISPLAY to localhost:0"
-    export DISPLAY=localhost:0
+    echo "Setting DISPLAY to :0"
+    export DISPLAY=:0
 
     echo "Allowing X11 connections from localhost..."
     xhost +localhost
 
     echo "Allowing X11 connections from the hostname..."
     xhost +$(hostname)
-}
+
 
 # Main script
 echo "Checking if system is macOS..."
