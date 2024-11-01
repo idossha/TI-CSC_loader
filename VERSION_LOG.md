@@ -7,6 +7,13 @@
 - [ ] Add directionality measurement for ana
 - [ ] Add ROI analysis for patches of the cortex using different atlases.
 
+## [Version 1.3.1] - 2024-10-31
+
+### Added
+- yank plugin to .tmux.conf to allow copy/paste functionality within tmux
+- color scheme to analyzer&optimizer prompts
+- better error catching & handling for optimizer
+
 ## [Version 1.3.0] - 2024-10-20
 
 ### Added
