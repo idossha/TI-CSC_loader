@@ -53,9 +53,6 @@ The Docker container includes the following tools and libraries:
         │   └── 002/
         │       ├── T1.nii
         │       └── T2.nii
-        └── Subjects/
-            ├── m2m_001/
-            └── m2m_002/
 
      ```
 
@@ -70,6 +67,40 @@ The Docker container includes the following tools and libraries:
      docker run --rm -ti -e DISPLAY=host.docker.internal:0.0 -v C:\path\to\project_dir:/mnt/project_dir -v "$LOCAL_PROJECT_DIR":/mnt/"$PROJECT_DIR_NAME" idossha/ti-package:vx.x.x
      ```
    - *Replace `C:\path\to\project_dir` with the actual path to your project directory on Windows.*
+
+
+    
+#### Alternative option for Windows users:
+
+1. Install Ubuntu environment from Windows Store
+2. Git clone `TI-CSC_loader` to ubuntu
+3. Install docker engine:
+
+```bash
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+```
+
+4. run the following commands:
+```bash
+sudo usermod 0aG docker $USER
+newgrp docker
+docker ps
+```
+
+5. Load toolbox
+
 
 ---
 
@@ -93,6 +124,22 @@ The Docker container includes the following tools and libraries:
   * Once you have your niftis in place, use the `charm` function from SimNIBS to reconstruct the head model and co-register EEG nets.
   * Once `m2m_subjectID` is created, make sure it is placed under `/project_dir/Subjects/`
   * You can move to the `analyzer` / `optimizer`
+  * Your project_dir at this point should look like the following tree:
+ 
+     ```
+        ├── MRIs/
+        │   ├── 001/
+        │   │   ├── T1.nii
+        │   │   └── T2.nii
+        │   └── 002/
+        │       ├── T1.nii
+        │       └── T2.nii
+        └── Subjects/
+            ├── m2m_001/
+            └── m2m_002/
+
+     ```
+
 
 
 
