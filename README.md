@@ -2,7 +2,7 @@
 # TI-CSC Toolbox for Docker Image
 
 **Developed and maintained by Ido Haber - [ihaber@wisc.edu](mailto:ihaber@wisc.edu)**  
-**Last update: October 21, 2024**
+**Last update: January 8, 2025**
 
 ---
 
@@ -46,16 +46,16 @@ The Docker container includes the following tools and libraries:
 3. **Set Up Project Directory:**
    - Ensure your project directory follows this structure:
      ```
-        ├── MRIs
-        │   ├── 001
-        │   │   ├── T1
-        │   │   └── T2
-        │   └── 002
-        │       ├── T1
-        │       └── T2
-        └── Subjects
-            ├── sub_001
-            └── sub_002
+        ├── MRIs/
+        │   ├── 001/
+        │   │   ├── T1.nii
+        │   │   └── T2.nii
+        │   └── 002/
+        │       ├── T1.nii
+        │       └── T2.nii
+        └── Subjects/
+            ├── m2m_001/
+            └── m2m_002/
 
      ```
 
@@ -91,7 +91,8 @@ The Docker container includes the following tools and libraries:
 1. locate you MR scans
   * If these are DICOM, use `dcm2niix` function from the command line to transform to niftis
   * Once you have your niftis in place, use the `charm` function from SimNIBS to reconstruct the head model and co-register EEG nets.
-  * Once `m2m_subjectrID` you can move to the `analyzer` / `optimizer`
+  * Once `m2m_subjectID` is created, make sure it is placed under `/project_dir/Subjects/`
+  * You can move to the `analyzer` / `optimizer`
 
 
 
@@ -102,7 +103,7 @@ The Docker container includes the following tools and libraries:
 
 **How to Run:**
 
-```sh
+```bash
 bash start-ana.sh
 ```
 
@@ -124,6 +125,27 @@ Following optimizations will automatically skip this step.
 For hd-EEG optimization, allocate more RAM to Docker. Recommended: >32GB.
 
 ---
+
+
+### If you are an inexperienced command line user:
+
+Bash syntax:
+
+`cd`            - change directory. helps you move around the tree structure. 
+`pwd`           - present working directory. Gives you the path of where you are currently at. 
+`ls`            - List all files/folders in your current position. 
+`cat`           - Concatenates the file. Meaning, it prints out the content of it to the console. 
+`vim file_name` - Allows you to edit text using vim editor.  
+`which`         - Searches for the path of some executable. 
+
+keyboard cntrl+c - Stop any process from the command line. 
+keyboard tab     - Auto completion from the command line. 
+keyboard arrows  -  Allows you to navigate thorugh history via up/down. Allows to edit a command by moving left/right. 
+docker ps        - test to see if docker is running. 
+
+---
+
+
 
 Cheers,  
 Ido Haber

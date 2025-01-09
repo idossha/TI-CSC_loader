@@ -47,7 +47,7 @@ setup_x11_display() {
 
     echo "Allowing X11 connections from the hostname..."
     xhost +$(hostname)
-
+}
 
 # Main script
 echo "Checking if system is macOS..."
@@ -63,4 +63,3 @@ echo "Setting up X11 display and connections..."
 setup_x11_display
 
 echo "Setup complete. X11 is ready to use."
-
