@@ -170,17 +170,17 @@ For hd-EEG optimization, allocate more RAM to Docker. Recommended: >32GB.
 
 Bash syntax:
 
-`cd`            - change directory. helps you move around the tree structure. 
-`pwd`           - present working directory. Gives you the path of where you are currently at. 
-`ls`            - List all files/folders in your current position. 
-`cat`           - Concatenates the file. Meaning, it prints out the content of it to the console. 
-`vim file_name` - Allows you to edit text using vim editor.  
-`which`         - Searches for the path of some executable. 
+* `cd`            - change directory. helps you move around the tree structure. 
+* `pwd`           - present working directory. Gives you the path of where you are currently at. 
+* `ls`            - List all files/folders in your current position. 
+* `cat`           - Concatenates the file. Meaning, it prints out the content of it to the console. 
+* `vim file_name` - Allows you to edit text using vim editor.  
+* `which`         - Searches for the path of some executable. 
 
-keyboard cntrl+c - Stop any process from the command line. 
-keyboard tab     - Auto completion from the command line. 
-keyboard arrows  -  Allows you to navigate thorugh history via up/down. Allows to edit a command by moving left/right. 
-docker ps        - test to see if docker is running. 
+* keyboard cntrl+c - Stop any process from the command line. 
+* keyboard tab     - Auto completion from the command line. 
+* keyboard arrows  -  Allows you to navigate thorugh history via up/down. Allows to edit a command by moving left/right. 
+* docker ps        - test to see if docker is running. 
 
 ---
 
