@@ -62,15 +62,8 @@ The Docker container includes the following tools and libraries:
      bash compose-loader.sh   # Recommended.
      bash img-loader.sh       # A single large image which contains everything. 
      ```
-   - On Windows, if you do not have bash available, run the following command manually:
-     ```sh
-     docker run --rm -ti -e DISPLAY=host.docker.internal:0.0 -v C:\path\to\project_dir:/mnt/project_dir -v "$LOCAL_PROJECT_DIR":/mnt/"$PROJECT_DIR_NAME" idossha/ti-package:vx.x.x
-     ```
-   - *Replace `C:\path\to\project_dir` with the actual path to your project directory on Windows.*
 
-
-    
-#### Alternative option for Windows users:
+    - On Windows systems, there are a few options, the following is reccomanded:
 
 1. Install Ubuntu environment from Windows Store
 2. Git clone `TI-CSC_loader` to ubuntu
@@ -99,15 +92,14 @@ newgrp docker
 docker ps
 ```
 
-5. Load toolbox
-
+5. Load toolbox by calling `compose_loader.sh`.
 
 ---
 
 ### Tips
 
 - **Automatic Screenshots:**  
-  If you wish to enable automatic screenshots in the main scripts, simply uncomment the relevant lines in the script files.
+  Experimental. If you wish to enable automatic screenshots in the main scripts, simply uncomment the relevant lines in the script files.
 
 - **Clearing Previous Outputs:**  
   Before re-executing analysis or optimization, it is highly recommended to clear or remove previous outputs to avoid conflicts.
@@ -191,8 +183,6 @@ keyboard arrows  -  Allows you to navigate thorugh history via up/down. Allows t
 docker ps        - test to see if docker is running. 
 
 ---
-
-
 
 Cheers,  
 Ido Haber
