@@ -8,7 +8,7 @@
 
 ### Overview
 
-The TI-CSC Toolbox is designed for researchers and engineers involved in Temporal Interference (TI) stimulation. This CLI-based toolbox facilitates the optimization of montages and the analysis of unipolar and bipolar montages. All dependencies are preinstalled & configured using docker, to facilitate easy of use and collaboration.
+The TI-CSC Toolbox is designed for researchers and engineers involved in Temporal Interference (TI) stimulation. This CLI-based toolbox facilitates the optimization of montages and the analysis of unipolar and bipolar montages. All dependencies are preinstalled & configured using docker, to facilitate ease of use and collaboration.
 
 ### Container Contents
 
@@ -27,7 +27,7 @@ The Docker container includes the following tools and libraries:
 ### Compatibility
 
 - **Operating Systems:** Linux, Windows, macOS
-- Please reach out if you encounter any bugs or issues.
+- Please reach out if you encounter any bugs or issues // ihaber@wisc.edu
 
 ---
 
@@ -40,8 +40,7 @@ The Docker container includes the following tools and libraries:
    - For macOS: Install [XQuartz](https://www.xquartz.org/).
    - For Windows: Install [Xming](https://sourceforge.net/projects/xming/).
    - *Note: These are only necessary if you plan to use GUI functionality.*
-   - macOS tends to be GUI problematic. It is **highly recommanded** to run the `config_sys.sh` script before trying the run the containers. Also, consider downgrading Xquartz to an older version.
-
+   - macOS tends to be GUI problematic. It is **highly recommanded** to run the `config_sys.sh` script before trying the run the containers. Also, consider downgrading Xquartz to an older version as the newer versions do not play nice yet.
 
 3. **Set Up Project Directory:**
    - Ensure your project directory follows this structure:
@@ -60,14 +59,15 @@ The Docker container includes the following tools and libraries:
    - On Unix systems (Linux/macOS), use the provided starter bash script:
      ```sh
      bash compose-loader.sh   # Recommended.
-     bash img-loader.sh       # A single large image which contains everything. 
+     bash img-loader.sh       # A single large image which contains everything. not maintained anymore.
      ```
 
-    - On Windows systems, there are a few options, the following is reccomanded:
+
+#### On Windows systems, there are a few options, the following is recommended:
 
 1. Install Ubuntu environment from Windows Store
 2. Git clone `TI-CSC_loader` to ubuntu
-3. Install docker engine:
+3. Install docker engine within ubuntu:
 
 ```bash
 # Add Docker's official GPG key:
@@ -91,8 +91,10 @@ sudo usermod 0aG docker $USER
 newgrp docker
 docker ps
 ```
+5. In the docker settings (can be accessed through the GUI):
+- Under General settings, allow "Use the WSL2 based engine"
 
-5. Load toolbox by calling `compose_loader.sh`.
+6. Load toolbox by `cd` into the TI-CSC_loader directory and call  `bash compose_loader.sh`.
 
 ---
 
@@ -166,7 +168,7 @@ For hd-EEG optimization, allocate more RAM to Docker. Recommended: >32GB.
 ---
 
 
-### If you are an inexperienced command line user:
+### bash command line refresher:
 
 Bash syntax:
 
