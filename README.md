@@ -96,6 +96,15 @@ docker ps
 
 6. Load toolbox by `cd` into the TI-CSC_loader directory and call  `bash compose_loader.sh`.
 
+**important note:** when mounting your project directory in windows, keep in mind that the path is different.
+
+example:
+
+Your project locallly is at : /E:/project_dir/ 
+From WSL, it is found at: /mnt/e/project_dir/ 
+
+So you will have to place the path corresponding to the WSL.
+
 ---
 
 ### Tips
